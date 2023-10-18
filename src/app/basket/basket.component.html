@@ -1,0 +1,52 @@
+<div
+  (click)="showModal = true"
+  class="fixed bottom-8 right-8 border rounded-full bg-slate-400 p-2 cursor-pointer"
+>
+  <img src="/assets/basket.png" alt="Basket" class="w-[2.5rem]" />
+</div>
+<div
+  class="w-full h-full fixed top-0 flex justify-center items-center"
+  *ngIf="showModal"
+>
+  <div
+    (click)="showModal = false"
+    class="w-full h-full absolute bg-black/30"
+  ></div>
+  <div
+    class="w-[60rem] min-h-[20rem] max-h-[80%] z-10 bg-slate-200 rounded shadow-inner overflow-scroll"
+  >
+    <div class="flex m-4 justify-end">
+      <button class="font-bold p-2 text-red-600">Checkout</button>
+      <button class="font-bold p-2" (click)="clearBasket()">Clear</button>
+    </div>
+    <div
+      *ngFor="let movie of selectedMovies"
+      class="mx-[2rem] grid grid-cols-4 mt-[20px]"
+    >
+      <div>
+        <img
+          [src]="'https://image.tmdb.org/t/p/w185' + movie.poster_path"
+          alt="Movie Poster"
+          class="rounded-lg shadow-2xl mb-8"
+        />
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <div class="font-bold text-blue-900">
+          {{ movie.title }}
+        </div>
+        <div class="text-red-400">
+          {{ movie.price }}
+        </div>
+      </div>
+      <div class="flex m-4 justify-center items-center">
+        <div class="font-bold text-red-600">Total Amount:</div>
+        <div class="text-red-600">{{ calculateTotalAmount() }}</div>
+      </div>
+      <div class="flex items-center justify-center">
+        <button class="font-bold" (click)="removeFromBasket(movie)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

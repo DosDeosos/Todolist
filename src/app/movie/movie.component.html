@@ -1,0 +1,70 @@
+<div class="bg-slate-200 my-4 rounded-lg border-2 border-black">
+  <div class="flex justify-center m-8">
+    <div
+      class="px-4 mt-4 font-bold text-lg rounded bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white"
+    >
+      Movie Searcher
+    </div>
+    <input
+      class="border-2 ml-4 mt-4 pl-4 rounded-lg"
+      placeholder="Pick Your Poison..."
+      [(ngModel)]="searchMovie"
+      (input)="updateSearchQuery(searchMovie)"
+    />
+  </div>
+  <app-basket />
+  <div class="flex justify-center">
+    <div class="w-full my-8">
+      <div *ngIf="movies.length <= 0" class="text-center text-red-600">
+        Movie Not Found
+      </div>
+      <div
+        class="mx-[10rem] grid grid-cols-4 mt-[20px]"
+        *ngFor="let movie of movies | filterMovies : searchMovie; let i = index"
+      >
+        <div>
+          <img
+            [src]="'https://image.tmdb.org/t/p/w185' + movie.poster_path"
+            alt="Movie Poster"
+            class="rounded-lg shadow-2xl"
+          />
+        </div>
+        <div class="flex flex-col justify-center items-center">
+          <div class="mb-4 font-bold text-blue-900">{{ movie.title }}</div>
+          <div class="mb-4 text-red-400">Price: {{ movie.price }}</div>
+          <div>
+            <input
+              class="border-2 mr-4 pl-2 rounded-lg"
+              type="number"
+              [(ngModel)]="movie.editedPrice"
+              placeholder="Set Price"
+            />
+            <button class="font-bold" (click)="confirmMoviePrice(movie)">
+              Set Price
+            </button>
+          </div>
+        </div>
+        <div class="flex justify-center items-center font-bold">
+          <button
+            class="m-4 text-green-600 text-xl text-center"
+            (click)="increaseQuantity(movie)"
+          >
+            +
+          </button>
+          <div>{{ movie.quantity }}</div>
+          <button
+            class="m-4 text-red-600 text-xl text-center"
+            (click)="decreaseQuantity(movie)"
+          >
+            -
+          </button>
+        </div>
+        <div class="flex justify-center items-center">
+          <button class="h-fit font-bold" (click)="addToBasket(movie)">
+            Add to Basket
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

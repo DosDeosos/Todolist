@@ -1,0 +1,36 @@
+<div class="ml-4 py-4 font-bold text-2xl">To-Do List</div>
+<div class="ml-4 pb-4">
+  <input
+    id="add-input"
+    [(ngModel)]="input"
+    placeholder="Type me"
+    class="border pl-2 rounded-lg"
+    (keyup.enter)="submit()"
+  />
+  <button class="ml-4 p-[3px] border-2 font-bold rounded-lg" (click)="submit()">
+    Add
+  </button>
+</div>
+
+<div>
+  <div *ngFor="let todo of list; index as i" class="ml-4 pb-2">
+    <input
+      id="checkbox-{{ i }}"
+      [(ngModel)]="todo.checked"
+      (change)="setStorage()"
+      type="checkbox"
+      class="mr-2"
+    /><label
+      class="cursor-pointer select-none"
+      [ngClass]="{ 'line-through': todo.checked }"
+      htmlFor="checkbox-{{ i }}"
+      >{{ todo.value }}</label
+    >
+    <button
+      (click)="delete(i)"
+      class="ml-4 p-[3px] border-2 font-medium rounded-lg"
+    >
+      Delete
+    </button>
+  </div>
+</div>

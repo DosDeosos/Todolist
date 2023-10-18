@@ -1,0 +1,22 @@
+<div>
+  <div
+    class="bg-gray-300 w-full grid grid-cols-2 cursor-pointer border-b-2 border-gray-700"
+  >
+    <div
+      (click)="changeView('todo')"
+      class="text-center py-6"
+      [ngClass]="{ 'bg-gray-600 text-white': view == 'todo' }"
+    >
+      To Do
+    </div>
+    <div
+      (click)="changeView('movie')"
+      class="text-center py-6 border-l-2 border-gray-700"
+      [ngClass]="{ 'bg-gray-600 text-white': view == 'movie' }"
+    >
+      Movie
+    </div>
+  </div>
+  <app-todo *ngIf="view == 'todo'" />
+  <app-movie *ngIf="view == 'movie'" />
+</div>
