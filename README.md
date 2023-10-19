@@ -1,3 +1,5 @@
+สามารถ Run Server ด้วยคำสั่ง "ng serve" ได้เลย
+
 # Todolist
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
