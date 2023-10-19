@@ -26,19 +26,12 @@ export class BasketComponent implements OnInit {
     return this.basketService.selectedMovies;
   }
 
-  addToBasket(movie: any) {
-    this.basketService.addToBasket(movie);
-    this.basketStorageService.setBasketData(this.selectedMovies);
-  }
-
   removeFromBasket(movie: any) {
     this.basketService.removeFromBasket(movie);
-    this.basketStorageService.setBasketData(this.selectedMovies);
   }
 
   clearBasket() {
     this.basketService.clearBasket();
-    this.basketStorageService.setBasketData([]);
   }
 
   calculateTotalAmount() {
